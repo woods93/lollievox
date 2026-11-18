@@ -10,7 +10,7 @@ import html
 
 # Contact form: Web3Forms access key (public by design). Leave "" until the key exists;
 # the form then tells visitors to use email instead.
-WEB3FORMS_KEY = ""
+WEB3FORMS_KEY = "22c1d174-828c-4872-9199-08a7429289b2"
 
 VOCAL_PACK_URL = "https://mailchi.mp/28d496237324/lollievox-bronze-vocal-pack"
 MUSIC_URL = "https://music.lollievox.com"
