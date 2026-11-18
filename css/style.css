@@ -77,3 +77,12 @@ a:hover,a:focus-visible{color:var(--neon)}
 .ph{border:1px dashed #5a5560;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;
   font:500 1.2rem var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .ph small{font-size:.75rem;letter-spacing:.14em}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin:2rem 0}
+.product{display:flex;flex-direction:column;gap:.35rem;color:var(--text)}
+.product img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#e8e8ea}
+.product:hover{text-decoration:none}
+.product:hover img{opacity:.92}
+.product-name{font-weight:500;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase}
+.product-price{color:var(--neon);font-weight:500}
+.product-note{font-size:.78rem;color:var(--muted)}
