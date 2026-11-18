@@ -71,3 +71,9 @@ a:hover,a:focus-visible{color:var(--neon)}
   .top nav a{font-size:1.15rem}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* shop */
+.placeholder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:2rem 0}
+.ph{border:1px dashed #5a5560;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;
+  font:500 1.2rem var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ph small{font-size:.75rem;letter-spacing:.14em}

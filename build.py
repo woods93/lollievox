@@ -29,7 +29,7 @@ def esc(s):
 
 
 NAV = [("index.html", "Home"), (MUSIC_URL, "Music"), (YOUTUBE_URL, "YouTube"),
-       ("about.html", "About"), ("contact.html", "Contact")]
+       ("about.html", "About"), ("shop.html", "Shop"), ("contact.html", "Contact")]
 
 
 def page(filename, title, description, body):
@@ -172,11 +172,26 @@ def build_contact():
 """
 
 
+def build_shop():
+    return """
+<article class="prose">
+  <h1>Shop</h1>
+  <p>LollieVox merch is on its way: shirts and other gear, printed and shipped on demand. Check back soon, or <a href="contact.html">send a note</a> and we&rsquo;ll tell you when it opens.</p>
+  <div class="placeholder-grid" aria-hidden="true">
+    <div class="ph">T-shirt<br><small>coming soon</small></div>
+    <div class="ph">Hoodie<br><small>coming soon</small></div>
+    <div class="ph">Stickers<br><small>coming soon</small></div>
+  </div>
+  <p><a class="btn" href="%s" target="_blank" rel="noopener">Get the free vocal pack</a></p>
+</article>
+""" % VOCAL_PACK_URL
+
 PAGES = [
     ("index.html", "LollieVox – Official website for Laurie Webb of LollieVox",
      "Official website for Laurie Webb of LollieVox. Acclaimed singer/songwriter known for her hits from FL Studio Demo Songs.", build_home),
     ("about.html", "About LollieVox (Laurie Webb)",
      "About Laurie Webb of LollieVox: Nashville singer/songwriter, FL Studio vocal packs, and collaborations with producers worldwide.", build_about),
+    ("shop.html", "Shop \u2013 LollieVox", "LollieVox merch: shirts and gear, coming soon.", build_shop),
     ("contact.html", "Contact LollieVox",
      "Contact LollieVox for booking, management, remix and vocal inquiries.", build_contact),
 ]
