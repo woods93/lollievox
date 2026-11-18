@@ -76,7 +76,7 @@ def listen_block():
   <div class="embed">
     <h2>Listen now</h2>
     <iframe title="LollieVox on Bandcamp" src="{BANDCAMP_EMBED}" seamless loading="lazy"
-      style="border:0;width:100%;height:470px"></iframe>
+      style="border:0;width:100%;max-width:520px;aspect-ratio:1/1;height:auto"></iframe>
   </div>
   <div class="embed">
     <h2>FL Studio 20 Official Demo Song</h2>
