@@ -7,6 +7,7 @@ Build the LollieVox static site.
 Edit the text here, rebuild, commit, push. GitHub Pages serves the result.
 """
 import html
+import os
 
 # Contact form: Web3Forms access key (public by design). Leave "" until the key exists;
 # the form then tells visitors to use email instead.
@@ -29,7 +30,7 @@ def esc(s):
 
 
 NAV = [("index.html", "Home"), (MUSIC_URL, "Music"), (YOUTUBE_URL, "YouTube"),
-       ("about.html", "About"), ("shop.html", "Shop"), ("contact.html", "Contact")]
+       ("about.html", "About"), ("shop.html", "Shop"), ("family.html", "Family"), ("contact.html", "Contact")]
 
 
 def page(filename, title, description, body):
@@ -50,7 +51,7 @@ def page(filename, title, description, body):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=fam1">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -193,12 +194,38 @@ def build_shop():
 </article>
 """ % (SHOP_URL, VOCAL_PACK_URL)
 
+SITE_ID = "lollievox"
+
+
+def build_family():
+    """Family page: cards for the other family sites, read from family.json."""
+    import json
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "family.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    cards = []
+    for f in data:
+        if f["id"] == SITE_ID:
+            continue
+        pic = ('<a class="fam-pic" href="%s" rel="noopener"><img src="%s" alt="%s" loading="lazy" '
+               'referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>'
+               % (esc(f["url"]), esc(f["image"]), esc(f["name"]))) if f.get("image") else ""
+        cards.append('<article class="fam-card">%s<h3><a href="%s" rel="noopener">%s</a></h3><p>%s</p></article>'
+                     % (pic, esc(f["url"]), esc(f["name"]), esc(f.get("blurb", ""))))
+    return '''<article class="prose">
+  <h1>Family</h1>
+  <p class="lede">The artists and makers we have built websites for.</p>
+  <div class="fam-grid">%s</div>
+</article>''' % "".join(cards)
+
+
 PAGES = [
     ("index.html", "LollieVox – Official website for Laurie Webb of LollieVox",
      "Official website for Laurie Webb of LollieVox. Acclaimed singer/songwriter known for her hits from FL Studio Demo Songs.", build_home),
     ("about.html", "About LollieVox (Laurie Webb)",
      "About Laurie Webb of LollieVox: Nashville singer/songwriter, FL Studio vocal packs, and collaborations with producers worldwide.", build_about),
     ("shop.html", "Shop \u2013 LollieVox", "LollieVox merch: shirts and gear, coming soon.", build_shop),
+    ("family.html", "Family – LollieVox", "The artists and makers in the LollieVox family of websites.", build_family),
     ("contact.html", "Contact LollieVox",
      "Contact LollieVox for booking, management, remix and vocal inquiries.", build_contact),
 ]
